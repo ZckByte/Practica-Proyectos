@@ -2,8 +2,6 @@
 #include <string>
 using namespace std; 
 
-//Alan Alzate
-
 int main(){
 	int referencia,talla, costo, precio;
 	string descripcion;
@@ -31,6 +29,5 @@ int main(){
 	cout << "COSTO: " << costo << endl;;
 	cout << "PRECIO DE VENTA: " << precio << endl;
 	cout << "\nGracias por la informacion" << endl;
-	cout << "Alan Alzate"
 	return 0;
 }
