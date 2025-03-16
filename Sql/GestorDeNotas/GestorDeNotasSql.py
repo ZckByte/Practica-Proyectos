@@ -26,6 +26,7 @@ while True:
         print("Ingrese una opción valido")
         continue
     break
+print("Pal commit xD")
 
 
 conex.commit()
