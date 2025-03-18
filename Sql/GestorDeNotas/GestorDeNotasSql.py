@@ -1,6 +1,5 @@
-def pedir_input_string():
-    texto = str(input("Ingrese: "))
-    return texto;
+def tiempo(cantidad):
+    time.sleep(cantidad)
 #Gestor de notas con sqlite 
 import os
 import sqlite3
@@ -8,8 +7,10 @@ import time
 conex = sqlite3.connect('notas.db')
 cs = conex.cursor()
 contenido = "";
+resu = cs.fetchall()
 titulo = "";
-
+input_eleccion_int = 0;
+id_nota = None;
 cs.execute(''' 
     CREATE TABLE IF NOT EXISTS notas(
     userID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,10 +23,9 @@ cs.execute('''
 print("....Gestor De Notas Con SQL....")
 print("1. Crear Notas\n2. Modificar Notas\n3. Eliminar\n4. Consultar Notas")
 while True:
-    eleccion = int(input("\nIngrese que desea realizar: "))
-    input_eleccion = pedir_input_string()
+    input_eleccion_int = int(input("\nIngrese que desea realizar: "))
     os.system('cls')
-    if eleccion == 1:
+    if input_eleccion_int == 1:
         print("....Crear Notas....")
         titulo = str(input("Ingrese un titulo para la nota: "))   
         cs.execute("INSERT INTO notas (titulo) VALUES (?)", (titulo,))
@@ -39,14 +39,34 @@ while True:
         os.system('cls')
         print("....Visualización....")
         cs.execute("SELECT * FROM notas WHERE titulo = ?", (titulo,))
-    elif eleccion == 2:
+    elif input_eleccion_int == 2:
         print("....Modificación....")
-        titulo = str(input("Ingrese el titulo de la nota: "))
+        while True:
+            titulo = str(input("Ingrese el titulo de la nota: "))
+            cs.execute("SELECT userID FROM notas WHERE titulo = ?",(titulo,))
+            id_nota = cs.fetchone()
+            if id_nota:
+                iduser = id_nota[0]
+                print("Nota encontrada..")
+                time.sleep(2)
+                os.system('cls')
+                break;
+            else:
+                os.system('cls')
+                print("No se encontro la nota, Ingresa un titulo valido")
+                os.system('cls')
+                tiempo(2)
+                continue;
+        print("....Modificación....")
         modificacion_eleccion = int(input("1. Titulo\n2. Contenido\nQue desea modificar: "))
         if modificacion_eleccion == 1:
-            input_eleccion()
-            if input_eleccion == "1":
-                print("Si")
+            os.system('cls')
+            print("....Modificación De Titulo....")
+            titulo_nuevo = str(input("Modificación de titulo: "))
+            cs.execute('UPDATE notas SET titulo = ? WHERE userID = ?',(titulo_nuevo,iduser))
+            print("Modificado Exitosamente.")
+            tiempo(2)
+            os.system('cls')
     else:
         print("Ingrese una opción valido")
         continue
