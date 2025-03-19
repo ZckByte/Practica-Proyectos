@@ -1,9 +1,12 @@
 def tiempo(cantidad):
     time.sleep(cantidad)
+def clear():
+    os.system('cls')
 #Gestor de notas con sqlite 
 import os
 import sqlite3
 import time
+clear()
 conex = sqlite3.connect('notas.db')
 cs = conex.cursor()
 contenido = "";
@@ -41,8 +44,8 @@ while True:
         cs.execute("SELECT * FROM notas WHERE titulo = ?", (titulo,))
     elif input_eleccion_int == 2:
         print("....Modificación....")
+        titulo = str(input("Ingrese el titulo de la nota: "))
         while True:
-            titulo = str(input("Ingrese el titulo de la nota: "))
             cs.execute("SELECT userID FROM notas WHERE titulo = ?",(titulo,))
             id_nota = cs.fetchone()
             if id_nota:
@@ -67,6 +70,28 @@ while True:
             print("Modificado Exitosamente.")
             tiempo(2)
             os.system('cls')
+        if modificacion_eleccion == 2:
+            clear()
+            print("....Modificación De Contenido....")
+            contenido_eleccion = int(input("1. Cambiar Contenido\n2. Agregar contenido\nQue desea realizar: "))
+            if contenido_eleccion == 1:
+                clear()
+                print("....Cambiar Contenido....")
+                nuevo_contenido = str(input("Nuevo Contenido: "))
+                cs.execute('UPDATE notas SET contenido = ? WHERE userID = ?',(nuevo_contenido,iduser,))
+                print("Modificado Exitosamente.")
+                tiempo(2)
+                clear()
+            elif contenido_eleccion == 2:
+                clear()
+                print("....Agregando Contenido....")
+                agregar_contenido = str(input("Contenido Agregado: "))
+                cs.execute('SELECT contenido FROM notas WHERE titulo = ?', (titulo,))
+                contenido_antiguo = cs.fetchone()
+                contenido_antiguo = contenido_antiguo[0]
+                contenido_nuevo = f"{contenido_antiguo } {agregar_contenido}"
+                print(contenido_nuevo)
+                cs.execute('UPDATE notas SET contenido = ? WHERE userID = ?',(contenido_nuevo,iduser))
     else:
         print("Ingrese una opción valido")
         continue
