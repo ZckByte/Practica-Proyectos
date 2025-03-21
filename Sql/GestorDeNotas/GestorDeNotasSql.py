@@ -1,8 +1,8 @@
+#Gestor de notas con sqlite 
 def tiempo(cantidad):
     time.sleep(cantidad)
 def clear():
     os.system('cls')
-#Gestor de notas con sqlite 
 import os
 import sqlite3
 import time
@@ -90,8 +90,10 @@ while True:
                 contenido_antiguo = cs.fetchone()
                 contenido_antiguo = contenido_antiguo[0]
                 contenido_nuevo = f"{contenido_antiguo } {agregar_contenido}"
-                print(contenido_nuevo)
                 cs.execute('UPDATE notas SET contenido = ? WHERE userID = ?',(contenido_nuevo,iduser))
+                print("Agregado Correctamente.")
+                tiempo(1.5)
+                clear()
     else:
         print("Ingrese una opción valido")
         continue
