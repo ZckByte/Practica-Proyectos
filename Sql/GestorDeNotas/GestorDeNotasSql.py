@@ -153,8 +153,10 @@ while not seguir:
     clear()
     seguir2 = str(input("Desea realizar otra acción?, S/N: ")).lower()
     if seguir2 != "n":
+        clear()
         continue
     else:
+        clear()
         break;
 conex.commit()
 conex.close()
