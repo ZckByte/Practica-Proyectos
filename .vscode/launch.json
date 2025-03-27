@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Administrator/Desktop/Coding/C++",
-      "program": "c:/Users/Administrator/Desktop/Coding/C++/build/Debug/outDebug",
+      "cwd": "c:/Coding/C++/Sofia",
+      "program": "c:/Coding/C++/Sofia/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
