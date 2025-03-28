@@ -68,7 +68,6 @@ int main(){
 	cout << "Utilidad Total: " << utilidad_total << endl;
 	cout << "Porcentaje de Utilidad: " << porcen_util << endl; 
 	cout << "\nGracias por la informacion" << endl;
-    cout << "Alan Alzate" << endl;
 	system("pause");
 	return 0;
 }
