@@ -12,7 +12,7 @@ using namespace std;
 // - Finalizar cuando todos los asientos estén ocupados. ✅
 // Extra: Permitir que un usuario reserve más de un asiento por compra.
 int main(){
-    int asiento_escogido;; //El asiento que luego va a escoger el usuario
+    int asiento_escogido; //El asiento que luego va a escoger el usuario
     int cantidad = 1; //cantidad de asientos que va a ocupar, 1 por defecto
     int libres = 15; //Luego se resta para saber cuantos asientos libres quedan
     int suma = 0; //Se utiliza para la cantidad de vueltas que dio el programa
